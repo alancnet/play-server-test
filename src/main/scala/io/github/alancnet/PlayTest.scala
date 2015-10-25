@@ -2,9 +2,7 @@ package io.github.alancnet
 
 import java.io.File
 
-import play.api.{Application, Environment, ApplicationLoader}
-import play.api.mvc.{RequestHeader, Result}
-import play.core.{SourceMapper, WebCommands, HandleWebCommandSupport, BuildLink}
+import play.api.{Environment, ApplicationLoader}
 
 object PlayTest {
   class Dummy{}
@@ -15,13 +13,6 @@ object PlayTest {
         classOf[Dummy].getClassLoader,
         play.api.Mode.Dev
       )
-      val sourceMapper: Option[SourceMapper] = None
-      val webCommands = new WebCommands {
-        override def addHandler(handler: HandleWebCommandSupport): Unit = {}
-
-        override def handleWebCommand(request: RequestHeader, buildLink: BuildLink, path: File): Option[Result] = None
-      }
-
       val context = play.api.ApplicationLoader.createContext(environment)
       val application = ApplicationLoader(context).load(context)
 
