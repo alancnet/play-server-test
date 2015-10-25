@@ -30,6 +30,7 @@ object PlayTest {
           new BuiltInComponentsFromContext(context) {
             def routes:Router.Routes = {
               case GET(p"/") => controllers.Application.index
+              case GET(p"/ws") => WebSocketTest.ws
             }
             override def router: Router = Router.from(routes)
           }.application
